@@ -1,0 +1,8 @@
+**/.tags
+bazel-bin
+bazel-genfiles
+bazel-out
+bazel-testlogs
+bazel-rules_wire
+node_modules
+yarn.lock

@@ -1,0 +1,85 @@
+# Copyright 2020 Plezentek, Inc. All rights reserved
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
+
+filegroup(
+    name = "all_rules",
+    srcs = [
+        "//wire/private/rules_go/lib:all_rules",
+        "//wire/private/skylib/lib:all_rules",
+    ] + glob(["**/*.bzl"]),
+    visibility = ["//visibility:public"],
+)
+
+filegroup(
+    name = "all_files",
+    testonly = True,
+    srcs = [
+        "//wire/private/rules:all_files",
+        "//wire/private/rules_go/lib:all_files",
+        "//wire/private/skylib/lib:all_files",
+    ] + glob(["**"]),
+    visibility = ["//visibility:public"],
+)
+
+bzl_library(
+    name = "repo",
+    srcs = [
+        "repo.bzl",
+        "//wire/private/rules_go/lib:platforms",
+        "//wire/private/skylib/lib:versions",
+    ],
+    visibility = ["//wire:__subpackages__"],
+)
+
+bzl_library(
+    name = "actions",
+    srcs = [
+        "actions.bzl",
+        "@io_bazel_rules_go//go:all_rules",
+    ],
+    visibility = ["//wire:__subpackages__"],
+    deps = [
+        "@bazel_skylib//lib:versions.bzl",
+    ],
+)
+
+bzl_library(
+    name = "providers",
+    srcs = [
+        "providers.bzl",
+    ],
+    visibility = ["//wire:__subpackages__"],
+)
+
+bzl_library(
+    name = "wire_toolchain",
+    srcs = [
+        "wire_toolchain.bzl",
+        "//wire/private/rules_go/lib:platforms",
+    ],
+    visibility = ["//wire:__subpackages__"],
+    deps = [
+        "//wire/private:providers.bzl",
+    ],
+)
+
+bzl_library(
+    name = "release",
+    srcs = [
+        "release.bzl",
+    ],
+    visibility = ["//wire:__subpackages__"],
+)
