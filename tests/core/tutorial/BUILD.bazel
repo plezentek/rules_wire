@@ -22,6 +22,7 @@ load(
     "@io_bazel_rules_go//go:def.bzl",
     "go_binary",
     "go_library",
+    "go_test",
 )
 
 filegroup(
@@ -56,19 +57,16 @@ go_binary(
     ],
 )
 
-# go_test(
-#     name = "tutorial_test",
-#     srcs = ["integration_tutorial_test.go"],
-#     embed = [":tutorial_library"],
-#     visibility = ["//visibility:public"],
-#     deps = [
-#         ":tutorial_database",
-#     ],
-# )
+go_test(
+    name = "tutorial_test",
+    srcs = ["tutorial_test.go"],
+    embed = [":tutorial_library"],
+    visibility = ["//visibility:public"],
+)
 
-# test_suite(
-#     name = "tutorial",
-#     tests = [
-#         "tutorial_test",
-#     ],
-# )
+test_suite(
+    name = "tutorial",
+    tests = [
+        "tutorial_test",
+    ],
+)
