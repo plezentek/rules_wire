@@ -26,7 +26,7 @@ bzl_library(
 
 stardoc(
     name = "wire_injector-docs",
-    out = "rules.md",
+    out = "new_rules.md",
     input = "docs.bzl",
     symbol_names = [
         "wire_injector",
@@ -37,11 +37,20 @@ stardoc(
 
 stardoc(
     name = "wire_provider-docs",
-    out = "providers.md",
+    out = "new_providers.md",
     input = "docs.bzl",
     symbol_names = [
         "WireRelease",
     ],
     visibility = ["//:__subpackages__"],
     deps = [":docs"],
+)
+
+filegroup(
+    name = "static-docs",
+    srcs = [
+        "providers.md",
+        "rules.md",
+    ],
+    visibility = ["//:__subpackages__"],
 )
