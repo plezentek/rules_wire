@@ -60,7 +60,7 @@ go_register_toolchains()
 # Download the Wire rules
 http_archive(
     name = "com_plezentek_rules_wire",
-    sha256 = "<PLACEHOLDER>",
+    sha256 = "ad42429b6b9625f2ee3ce5894aaa9b5574cbb655e63ea13967d7648f11b049ec",
     urls = [
         "https://github.com/plezentek/rules_wire/releases/download/v0.1.0-alpha/rules_wire-v0.1.0-alpha.tar.gz"
     ],
